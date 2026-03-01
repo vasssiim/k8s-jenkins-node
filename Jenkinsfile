@@ -46,7 +46,7 @@ pipeline{
                 sh "docker push ${IMAGE_TAG}"
                 echo 'Docker image pushed successfully.'
             }
-    
+        }
 
         stage('Deploy'){
             steps{
