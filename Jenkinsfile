@@ -3,7 +3,7 @@ pipeline{
 
     environment {
         IMAGE_NAME = 'vasssim/webapp'
-        IMAGE_TAG = '$(IMAGE_NAME):${GIT_COMMIT}'
+        IMAGE_TAG = "${IMAGE_NAME}:${GIT_COMMIT}"
     }
 
     stages{
