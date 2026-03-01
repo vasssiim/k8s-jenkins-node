@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     environment {
-        IMAGE_NAME = 'VASSSIM/WEBAPP'
+        IMAGE_NAME = 'vasssim/webapp'
         IMAGE_TAG = '$(IMAGE_NAME):${GIT_COMMIT}'
     }
 
