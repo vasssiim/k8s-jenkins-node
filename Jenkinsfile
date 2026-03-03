@@ -56,7 +56,7 @@ pipeline{
             steps{
                 echo 'Deploying to Kubernetes...'
                 withKubeConfig([credentialsId: 'kubeconfig-creds']) {
-                    sh "kubectl set image deployment/webapp webapp=${IMAGE_TAG} -n webapp-namespace"
+                    sh "kubectl set image deployment/k8s-webapp k8s-webapp=${IMAGE_TAG} -n webapp"
                     echo 'Deployment updated successfully.'
                 }
             }

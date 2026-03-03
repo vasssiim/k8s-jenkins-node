@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ns
+  name: webapp
 ---
 apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: ns-quota
-  namespace: ns
+  namespace: webapp
 spec:
   hard:
     requests.cpu: "4"
