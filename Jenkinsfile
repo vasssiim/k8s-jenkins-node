@@ -4,7 +4,6 @@ pipeline{
     environment {
         IMAGE_NAME = 'vasssim/webapp'
         IMAGE_TAG = "${IMAGE_NAME}:${GIT_COMMIT}"
-        KUBE_CONFIG = credentials('kubeconfig-creds')
         AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
     }
@@ -13,8 +12,6 @@ pipeline{
         stage('Build'){
             steps{
                 echo 'Building the application...'
-                sh 'ls -la $KUBE_CONFIG'
-                sh 'chmod 644 $KUBE_CONFIG'
                 sh 'npm install'
             }
         }
