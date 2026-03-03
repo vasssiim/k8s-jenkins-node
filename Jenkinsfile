@@ -52,7 +52,7 @@ pipeline{
             }
         }
 
-        stage('Deploye to Kubernetes'){
+        stage('Deploy to Kubernetes'){
             steps{
                 echo 'Deploying to Kubernetes...'
                 withKubeConfig([credentialsId: 'kubeconfig-creds']) {
