@@ -7,11 +7,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Welcome to Docker and React!
+          Welcome to Kubernetes and Jenkins Node Application!
           <br/>
-          Jenkins, Docker, and React.
-          <br/>
-          Version 9
+          Version 11
         </p>
         <a
           className="App-link"
