@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-webapp
+  namespace: ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-webapp
+  template:
+    metadata:
+      labels:
+        app: k8s-webapp
+    spec:
+      containers:
+      - name: k8s-webapp
+        image: vasssim/webapp:2db4ee082143fbcbeecf69f00b5e974c6d4e09dc
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi

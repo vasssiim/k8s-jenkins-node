@@ -4,12 +4,17 @@ pipeline{
     environment {
         IMAGE_NAME = 'vasssim/webapp'
         IMAGE_TAG = "${IMAGE_NAME}:${GIT_COMMIT}"
+        KUBE_CONFIG = credentials('kubeconfig-creds')
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
     }
 
     stages{
         stage('Build'){
             steps{
                 echo 'Building the application...'
+                sh 'ls -la $KUBE_CONFIG'
+                sh 'chmod 644 $KUBE_CONFIG'
                 sh 'npm install'
             }
         }
@@ -44,6 +49,16 @@ pipeline{
                 echo 'Pushing Docker image to registry...'
                 sh "docker push ${IMAGE_TAG}"
                 echo 'Docker image pushed successfully.'
+            }
+        }
+
+        stage('Deploye to Kubernetes'){
+            steps{
+                echo 'Deploying to Kubernetes...'
+                withKubeConfig([credentialsId: 'kubeconfig-creds']) {
+                    sh "kubectl set image deployment/webapp webapp=${IMAGE_TAG} -n webapp-namespace"
+                    echo 'Deployment updated successfully.'
+                }
             }
         }
 
